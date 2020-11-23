@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <!-- Trinome: Serge Keita, Ilan Graoudi, Yanis Djouadi-->
+    <title id="titre">TP1</title>
+    <meta charset="UTF-8"/>
+
+    <style>
+         h2 {
+                text-align: center;
+                border-bottom:4px solid black;
+                text-shadow:2px 2px 1px #aaa;
+            }
+       table{
+                margin: auto;
+            }
+            td{
+                border:4px solid black;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 2s,color 2s,font-size 2s ;
+            }
+
+            th{
+                border:4px solid black;
+                
+            }
+            td:hover{
+                background-color: black;
+                color: white;
+                font-size: 20px;
+            }
+
+            .fontgris{
+                background-color: lightgrey;
+            }
+
+            #rond{
+                width: 100px;
+                height: 100px;
+                border-radius: 60px;
+            }
+            #deuxrond{
+                width: 200px;
+                height: 200px;
+                border-radius: 120px;
+            }
+            footer{
+                background-color:lightgrey;
+                text-align: center; 
+                position: sticky; 
+                bottom: 0%;
+            }
+    </style>
+  </head>
+  <body>
+  
+    <h1 style="text-align: center;"><p>Lien vers le TP1 <a href="TP1.html">ici</a></p></h1>
+    <!--creation d'un tableau rond, avec animation sur la case quand le curseur est dessus à l'exeption des en-têtes-->
+  <table>
+      <tr>
+          <th class="fontgris" id="rond" style="text-align : right;">Titre du film</th>
+          <th id="rond" style="text-align : left;">Date de sortie</th>
+          <th class="fontgris" id="rond" style="text-align : left;">Note</th>
+      </tr>
+
+      <tr>
+          
+          <td id="rond" style="text-align : right">REUSSIR ou MOURRIR</td>
+          <td id="rond" class="fontgris">09/11/2005</td>
+          <td id="rond">5/5</td>
+      </tr>
+
+      <tr>
+          
+          <td id="rond" class="fontgris" style="text-align : right;">ALL EYEZ ON ME</td>
+          <td id="rond" >14/06/2017</td>
+          <td id="rond" class="fontgris">4.80/5</td>
+      </tr>
+      <tr>
+          <td id="rond" style="text-align : right">8 Mile</td>
+          <td id="rond" class="fontgris">26/02/2003</td>
+          <td id="rond">4.75/5</td>
+      </tr>
+
+      <tr>
+          <td id="rond" class="fontgris" style="text-align : right;">BEATS</td>
+          <td id="rond">19/06/2019</td>
+          <td id="rond" class="fontgris" >4.5/5</td>
+      </tr>
+      <tr>
+          <td id="deuxrond" class="fontgris" style="text-align : right;" colspan="2">COACH CARTER</td>
+          <td  style="border-radius: 200px; width: 100px;height: 100px;">4.25/5</td>
+      </tr>
+  </table>
+
+  <footer >
+    
+      <h2>Trinome: Serge Keita, Ilan Graoudi, Yanis Djouadi.</h2>
+    
+  </footer>
+  </body>
+</html>
+

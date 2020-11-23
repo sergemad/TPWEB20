@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Trinome: Serge Keita, Ilan Graoudi, Yanis Djouadi-->
+        <!--definition du titre-->
+        <title id="titre">Premier TP de WEB!</title> 
+        <!--pour pouvoir écrire les caractères spéciaux-->
+        <meta charset="UTF-8">
+        <!--css-->
+        <style>
+            p {
+                 background-color: darkgray;
+            }
+
+            .parag_2 {
+                border: 4px solid rgb(0, 0, 0);
+                padding: .5em;
+            }
+
+            h1 {
+            text-align: center;
+            border-bottom:4px solid black;
+            }
+
+            h2 {
+                text-align: center;
+                border-bottom:4px solid black;
+                text-shadow:2px 2px 1px #aaa;
+            }
+
+            ol.list {
+                font-size: large;
+                font-family: fantasy;
+                font-style: italic;
+                color: azure;
+                list-style-type: none;
+            }
+
+            ol li::before{
+                content: "->/";
+                float: left;
+                margin-left: 20px;
+                margin-right: 25px;
+            }
+
+            ol li{
+                background-color: darkgray;
+                display: inline-block;
+                border:4px solid black;
+                border-radius: 5px;
+                margin-left: 25px;
+                margin-right: 35px;
+                cursor: pointer;
+                transition: background-color 2s;
+            }
+
+            ol li:hover{
+                background-color: blueviolet;
+            }
+
+            table{
+                margin: auto;
+                border:4px solid black;
+                border-collapse: collapse;
+            }
+            td{
+                border-collapse: collapse;
+                border:4px solid black;
+                cursor: pointer;
+                transition: background-color 2s,color 2s;
+            }
+
+            th{
+                border-collapse: collapse;
+                border:4px solid black;
+                
+            }
+            td:hover{
+                background-color: black;
+                color: white;
+            }
+
+            .fontgris{
+                background-color: lightgrey;
+
+            }
+
+            #carre{
+                width: 100px;
+                height: 100px;
+            }
+            #deuxcarre{
+                width: 200px;
+                height: 200px;
+            }
+
+            footer{
+                background-color:lightgrey;
+                text-align: center; 
+                position: sticky; 
+                bottom: 0%;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <!--Titre 1-->
+        <h1>TP1</h1>
+        <!--paragraphe-->
+        <p>
+            <strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong>
+            Aenean imperdiet placerat est ac condimentum. Nulla accumsan lectus a nibh scelerisque venenatis.
+            In in efficitur justo.<br>
+            Quisque vel nulla et nibh gravida egestas. Pellentesque lobortis interdum magna vel vulputate.
+            Etiam facilisis vulputate pharetra. Cras eu massa urna.
+        </p>
+        <!--Titre 2-->
+        <h2>Conseil</h2>
+        <!--paragraphe avec une class pour pouvoir la differencier de la précédente-->
+        <p class="parag_2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Aenean imperdiet placerat est ac condimentum. Nulla accumsan lectus a nibh scelerisque venenatis.
+            In in efficitur justo.<br>
+            Quisque vel nulla et nibh gravida egestas. Pellentesque lobortis interdum magna vel vulputate.
+            Etiam facilisis vulputate pharetra. Cras eu massa urna.<br>
+            <!--creation de ma liste-->
+            <ol class="list">
+                <li>REUSSIR ou MOURRIR</li>
+                <li>ALL EYEZ ON ME</li>
+                <li>8 Mile</li>
+                <li>BEATS</li>
+                <li>COACH CARTER</li>
+            </ol>
+        </p>
+        <!--creation d'un tableau carré avec animation sur la case quand le curseur est dessus à l'exeption des en-têtes-->
+        <table>
+            <tr>
+                <th class="fontgris" id="carre" style="text-align : right;">Titre du film</th>
+                <th id="carre" style="text-align : left;">Date de sortie</th>
+                <th class="fontgris" id="carre" style="text-align : left;">Note</th>
+            </tr>
+
+            <tr>
+                
+                <td id="carre" style="text-align : right">REUSSIR ou MOURRIR</td>
+                <td id="carre" class="fontgris">09/11/2005</td>
+                <td id="carre">5/5</td>
+            </tr>
+
+            <tr>
+                
+                <td id="carre" class="fontgris" style="text-align : right;">ALL EYEZ ON ME</td>
+                <td id="carre" >14/06/2017</td>
+                <td id="carre" class="fontgris">4.80/5</td>
+            </tr>
+            <tr>
+                <td id="carre" style="text-align : right">8 Mile</td>
+                <td id="carre" class="fontgris">26/02/2003</td>
+                <td id="carre">4.75/5</td>
+            </tr>
+
+            <tr>
+                <td id="carre" class="fontgris" style="text-align : right;">BEATS</td>
+                <td id="carre">19/06/2019</td>
+                <td id="carre" class="fontgris" >4.5/5</td>
+            </tr>
+            <tr>
+                <td id="deuxcarre" class="fontgris" style="text-align : right;" colspan="2">COACH CARTER</td>
+                <td id="carre">4.25/5</td>
+            </tr>
+        </table>
+        <!--creation d'un pied de page-->
+        <footer >
+    
+            <h2>Trinome: Serge Keita, Ilan Graoudi, Yanis Djouadi.</h2>
+          
+        </footer>
+        
+    </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TP3</title>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <style>
+            ul li::before{
+                content: "X";
+                float: left;
+                margin-left: 20px;
+                margin-right: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <div id="app" >
+                <article v-for="i in TODO" >
+                    <h2><span v-if="i.effctué">{{i.titre}} : {{i.contenu}} (v)</span>
+                    <span v-else>{{i.titre}} : {{i.contenu}}</span></h2>
+                </article><br>
+                <input v-model="titre" placeholder="nouveau element">
+                <input v-model="contenu" placeholder="nouveau element">
+                <select name="effectuer" id="bool">
+                    <option >Faux</option>
+                    <option>Vrai</option>
+                </select>
+                <button v-on:click="AjoutText">Ajout</button>
+                <br><br>
+                <select name="Info" id="liste" >
+                    <option v-for="i in TODO">{{i.titre}}</option>
+                </select>
+                <button v-on:click="Modifier">Modifier</button>
+
+            </div>
+        </center>
+        <script>
+            var app= new Vue({
+                el: "#app",
+                data:{
+                    TODO:[
+                        {titre: 'sieste',
+                        contenu:'entre 12 H ET 14 H',
+                        effctué: true}
+                    ],
+                    titre:'',
+                    contenu:''
+                },
+                methods:{
+                    AjoutText:function(){
+                        if(this.titre!='' && this.contenu!=''){
+                            Sel=document.getElementById("bool").selectedIndex;
+                            Ar={titre: this.titre,
+                            contenu: this.contenu,
+                            effctué: Sel==1 ? true : false}
+                            this.TODO.push(Ar);
+                            this.titre='';
+                            this.contenu='';
+                        }
+                    },
+                    Modifier:function(){
+                        Sel=document.getElementById("liste").selectedIndex;
+                        this.TODO[Sel].effctué=!this.TODO[Sel].effctué;
+                    }
+                }
+            });
+            
+
+        </script>
+    </body>
+</html>

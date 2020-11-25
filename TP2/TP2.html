@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TP 2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            body{
+                background-color: rgba(226, 224, 224, 0.849);
+                font-family: "Comic Sans MS ", "Arial Black", Arial, Verdana;
+            }
+            
+
+            .logo{
+                height: 100px; 
+                width: 100px; 
+                border-radius: 100%;
+                box-shadow: 3px 3px 2px #aaa;
+                margin-top: 15px;
+            }
+            
+            .text{
+                margin-top: 1%;
+                margin-left: 2%; 
+                border: 0px; 
+                border-bottom: 1px solid black;
+                font-family: "Comic Sans MS ", "Arial Black", Arial, Verdana;
+            }
+            .button1{
+                margin-left: 2%; 
+                margin-top: 1%; 
+                margin-bottom: 1%;
+                box-shadow: 1px 3px 2px #aaa;
+                border: 0px;
+                text-transform: uppercase;
+                font-family: "Comic Sans MS ", "Arial Black", Arial, Verdana;
+            }
+
+            .button1:hover{
+                cursor: pointer;
+                background-color: rgb(220,220, 220);
+            }
+
+            .text:invalid{
+                border-bottom: 1px solid red;
+                caret-color: red;
+            }
+
+            .text:placeholder-shown{
+                border-bottom: 1px solid red;
+            }
+
+            select{
+                margin-left: 2%; 
+                width: 200px;
+                font-family: "Comic Sans MS ", "Arial Black", Arial, Verdana;
+            }
+            
+            .contenaire{
+                margin-top: 10px;
+                background-color: white;
+                box-sizing: border-box;
+                display: flexbox;
+            }
+
+            .largeuradaptable{
+                width: 100%;
+                
+            }
+            .ombre{
+                box-shadow: 1px 3px 2px #aaa;
+            }
+
+            .marge{
+                margin-left: 2%;
+                text-align: center;
+            }
+
+            .taille{
+                width: 200px;
+            }
+
+            .centrer{
+                margin:auto;
+                text-align: center;
+            }
+
+            td{
+                border-bottom: 1px solid black;
+                border-collapse: collapse;
+            }
+            
+            .taille_min{
+                min-width: 900px;
+            }
+
+            .visible{
+                text-align: center;
+                position: sticky;
+                top: 1%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <div style="text-align: center; position: sticky; top: 1%; ">
+                <img class="logo" src="logo.png" alt="Mon logo" >
+            </div>
+
+            <form class="contenaire ombre centrer largeuradaptable visible" action="" method="POST" name="formulaire" style="position: sticky; top: 1%;">
+                <div>
+                    <input type="text" id="firstname" name="Prenom" placeholder="Prénom"  class="text taille"/>
+                    <input type="text" id="lastname" name="nom" placeholder="Nom" class="text taille"/>
+                    <input type="email" id="mail" name="mail" placeholder="*@gmail.com" class="text taille" />
+                    <select name="role">
+                        <option>Enseignant</option>
+                        <option>Etudiant</option>
+                    </select><br>
+                </div>
+            
+                    <button type="button" class="button1" name="Ajout" onclick="Ajouter()">Ajouter</button>
+                    <button type="button" class="button1" onclick="Tout_supp()">Tout supprimer</button>
+                
+            </form>
+            
+        </header>
+
+        <main class="contenaire ombre largeuradaptable taille_min" style="overflow:hidden;">
+            <table class=" marge centrer" id="tableau">
+                <tr class=" marge centrer">
+                    <th class="marge taille">Prénom</th>
+                    <th class="marge taille">Nom</th>
+                    <th class="marge taille">Email</th>
+                    <th class="marge taille">Rôle</th>
+                </tr>
+            </table>
+        </main>
+        <footer  class="visible">
+            <h2>Trinome: Serge Keita, Ilan Graoudi, Yanis Djouadi.</h2>
+        </footer>
+
+        <script>
+            function Ajouter(){
+                var name=document.forms.formulaire;
+                var table=document.querySelector('#tableau');
+
+                var ligne=document.createElement("tr");
+                ligne.style.borderBottom="3px";
+                var td1=document.createElement("td");
+                td1.textContent=name.elements.Prenom.value;
+                var td2=document.createElement("td");
+                td2.textContent=name.elements.nom.value;
+                var td3=document.createElement("td");
+                td3.textContent=name.elements.mail.value;
+                var td4=document.createElement("td");
+                td4.textContent=name.elements.role.value;
+                
+                if(name.elements.nom.value!="" && 
+                name.elements.Prenom.value!="" &&
+                name.elements.mail.value!=""){
+                    ligne.appendChild(td1);
+                    ligne.appendChild(td2);
+                    ligne.appendChild(td3);
+                    ligne.appendChild(td4);
+
+                    table.appendChild(ligne);
+                
+                var b=document.querySelector(".button1");
+                b.style.display="none";
+                
+                intervalID = setInterval(function() { AffichageAjout(); }, 10000);
+                
+                }else{
+                    alert("Contenu erroné");
+                }
+            }
+            function AffichageAjout(){
+                var b=document.querySelector(".button1");
+                b.style.display="";
+            }
+            function Tout_supp(){
+                var table=document.querySelector('#tableau');
+                var t=document.querySelectorAll('tr');
+                console.log(table);
+                for(let i=t.length-1;i>0;i--){
+                    table.removeChild(t[i]);
+                }
+
+            }
+        </script>
+    </body>
+</html>

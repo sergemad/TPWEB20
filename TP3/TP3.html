@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TP3</title>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+          <h1>Mon âge est {{ age }}</h1>
+
+        </div>
+        <script>
+            var vm= new Vue({
+                el: '#app1',
+                data: {
+                    age: 8
+                },
+                methods:{
+                    OneMore: function(){
+                        
+                        intervalId=setInterval(() => {this.age=this.age+1;},1000);
+                    
+                    }
+                }
+            });
+            vm.OneMore();
+        </script>
+    </body>
+</html>

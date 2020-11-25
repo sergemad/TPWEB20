@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TP3</title>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" >
+            <span>
+                {{currentFruit}}
+            </span>
+            <ul>
+                <li v-for="fruit in fruits" v-on:click="changefruit(fruit.nom)" >
+                    <span v-if="fruit.nom==currentFruit">
+                        <strong v-on:click="suppfruit(fruit.nom)">X</strong><strong>   {{fruit.nom}}</strong>
+                    </span>
+                    <span v-else><strong v-on:click="suppfruit(fruit.nom)">X</strong>   {{fruit.nom}}</span>
+                </li>
+            </ul>
+        </div>
+        <script>
+            var app= new Vue({
+                el: "#app",
+                data:{
+                    fruits:[
+                        {nom:"Pomme"},
+                        {nom:"Orange"},
+                        {nom:"Fraise"},
+                        {nom:"Melon"},
+                        {nom:"Cerise"}
+                    ],
+                    currentFruit: "Pomme"
+                },
+                methods:{
+                    changefruit: function (f){
+                        this.currentFruit=f;
+                        liste=document.querySelector("li");
+                    },
+                    suppfruit: function(f){
+                        for(i=0;i<this.fruits.length;i++){
+                            if(f==this.fruits[i].nom){
+                                this.fruits.splice(i,1);
+                            }
+                        }
+                    }
+                }
+            });
+            
+
+        </script>
+    </body>
+</html>

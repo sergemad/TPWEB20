@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TP3</title>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <style>
+            ul li::before{
+                content: "X";
+                float: left;
+                margin-left: 20px;
+                margin-right: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <div id="app" >
+                <h2><article v-for="i in IT" >
+                    <span >{{i}}</span>
+                </article></h2>
+                <input v-model="mess" placeholder="new element">
+                <button v-on:click="AjoutText">Ajout</button>
+                <br><br>
+                <select name="Info" id="liste" >
+                    <option v-for="i in IT">{{i}}</option>
+                </select>
+                <input v-model="modmess" placeholder="change l'élément">
+                <button v-on:click="Modifier">Modifier</button>
+
+            </div>
+        </center>
+        <script>
+            var app= new Vue({
+                el: "#app",
+                data:{
+                    IT:['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
+                    mess:'',
+                    modmess:''
+                },
+                methods:{
+                    AjoutText:function(){
+                        if(this.mess!=''){
+                            this.IT.push(this.mess);
+                            this.mess='';
+                        }
+                    },
+                    Modifier:function(){
+                        if(this.modmess!=''){
+                            this.IT[document.getElementById("liste").selectedIndex]=this.modmess;
+                            this.modmess='';
+                        }
+                    }
+                }
+            });
+            
+
+        </script>
+    </body>
+</html>

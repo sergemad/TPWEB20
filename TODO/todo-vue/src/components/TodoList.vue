@@ -7,10 +7,11 @@
                 &times;
             </div>
             <div class="todo-item-left">
-                <input v-if="todo.edite" type="text" class="todo-label"
+                <input type="checkbox" v-model="todo.completed">
+                <input v-if="todo.edite" type="text" class="todo-label" 
                  v-model="todo.title" @blur="DoneEdite(todo)" @keyup.enter="DoneEdite(todo)"
                   @keyup.esc="canceledite(todo)" v-focus >
-                <div v-else @dblclick="edite(todo)" >
+                <div v-else @dblclick="edite(todo)" :class="{ completed : todo.completed}">
                     {{todo.title}}
                 </div>
             </div>
@@ -19,7 +20,7 @@
     </div>
 </template>
 
-<script>
+<script> 
 export default {
   name: 'TodoList',
   data () {
@@ -126,6 +127,10 @@ export default {
     display: flex;
     align-items: center;
     padding: 10px;
+}
+.completed{
+    text-decoration: line-through;
+    color: grey;
 }
 
 </style>

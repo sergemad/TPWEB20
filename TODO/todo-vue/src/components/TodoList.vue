@@ -3,21 +3,13 @@
         <input type="text" class="todo-input" placeholder="what needs to be done"
         v-model="newtodo" @keyup.enter="Addtodo()" />
         <transition-group name="fade" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
-        <div v-for="(todo, index) in todoFiltered" :key="todo.id" class="todo-item" >
-            <div class="remove-item" @click="removetodo(index)">
-                &times;
-            </div>
-            <div class="todo-item-left">
-                <input type="checkbox" v-model="todo.completed">
-                <input v-if="todo.edite" type="text" class="todo-label" 
-                 v-model="todo.title" @blur="DoneEdite(todo)" @keyup.enter="DoneEdite(todo)"
-                  @keyup.esc="canceledite(todo)" v-focus >
-                <div v-else @dblclick="edite(todo)" :class="{ completed : todo.completed}">
-                    {{todo.title}}
-                </div>
-            </div>
+        
+        <item v-for="(todo, index) in todoFiltered" :key="todo.id" 
+         :todo='todo' :index='index' :CheckAll='AnyNotDone'
+         @RemovedTodo='removetodo' @FinishedEdite='FinishedEdite' >
+           
             
-        </div>
+        </item>
         </transition-group>
         <div class="extra-container">
             <div>
@@ -43,8 +35,13 @@
 </template>
 
 <script> 
+import Item from './Item.vue'
+
 export default {
   name: 'TodoList',
+  components:{
+    Item,
+  },
   data () {
     return {
       newtodo:'',
@@ -67,19 +64,8 @@ export default {
       ]
     }
   },
-
-    directives: {
-      focus: {
-          //directive definition
-          inserted: function (el){
-              el.focus()
-          }
-      }
-  },
-
   methods:{
       Addtodo: function (){
-          //alert("yo");
           if(this.newtodo.trim().length==0){
               return
           }
@@ -94,7 +80,7 @@ export default {
       removetodo(index){
           this.todos.splice(index,1)
       },
-      edite(todo){
+      Edite(todo){
           this.BeforeTitleEdit=todo.title
           todo.edite=true
       },
@@ -113,6 +99,9 @@ export default {
       },
       ClearCompleted(){
           this.todos=this.todos.filter(todo => !todo.completed)
+      },
+      FinishedEdite(data){
+          this.todos.splice(data.index,1,data.todo)
       }
 
     
@@ -155,18 +144,16 @@ export default {
     font-size: 18px;
     
 }
-.todo-iteme{
+.todo-item{
     display: flex;
-    float: left;
     justify-content: space-between;
     align-items: center;
-    max-width: 500px; 
+    max-width: 600px; 
     animation-duration: 0.3s;
 }
 .remove-item{
     cursor: pointer;
-    display: flex;
-    float: right;
+    float:left;
     padding: 7px;
 }
 .remove-item:hover{
@@ -174,7 +161,7 @@ export default {
 }
 .todo-label{
     border: 0px;
-    width: 100%;
+    width: 530px;
     font-size: 24px;
 }
 .todo-item-left{

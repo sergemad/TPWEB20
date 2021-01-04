@@ -9,9 +9,9 @@ const client = new Client({
   host: 'localhost',
   password: 'YIS',
   database: 'ProjetFilm'
- })
+})
  
- client.connect()
+client.connect()
 
  router.get('/user', async (req, res) => {
   const result = await client.query({
@@ -101,7 +101,43 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/addfilm', async (req, res) => {
+  const id=req.body.id
+  const title=req.body.Title
+  const img=req.body.Img
+  const director=req.body.Director
+  const year= req.body.year
+  const category= req.body.category
+  const desc=''
+  const last=''
+  const result = await client.query({
+    text: 'SELECT * FROM film WHERE filmname=$1 AND director=$2 AND year=$3',
+    values: [title, director, year]
+  })
 
-  
+  if (result.rows.length > 0) {
+    res.status(401).json({
+      message: 'film already exists'
+    })
+    return
+  }
+
+  await client.query({
+    text: `INSERT INTO film(filmid,filmname,description,year,category,last,director,image)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    `,
+    values: [id, title, desc, year, category, last, director, img]
+  })
+  req.session.newfilm = img
+  res.json({
+    filmid: id,
+    filmname=title,
+    description: desc,
+    year: year,
+    category: category,
+    last: last,
+    director: director,
+    image=img,
+  })
+
 })
 module.exports = router

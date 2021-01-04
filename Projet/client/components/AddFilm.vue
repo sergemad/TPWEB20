@@ -120,6 +120,7 @@ module.exports = {
   },
   data () {
     return {
+     id: 0,
      Title:'',
      Img:'',
      category:'',
@@ -130,9 +131,12 @@ module.exports = {
   methods: {
     Addfilm(){
       this.$emit('addfilm', {
+          id: this.id,
           Title: this.Title,
           Img: this.Img,
           category: this.category,
+          Director: this.Director,
+          year: this.year,
         })
     }
   }

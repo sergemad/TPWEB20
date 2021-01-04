@@ -61,6 +61,9 @@ var app = new Vue({
       this.isConnected=account.isConnected
       this.user=account.user
       this.$router.push('/')
+    },
+    async addfilm(newfilm){
+      console.log(newfilm)
     }
   }
 })

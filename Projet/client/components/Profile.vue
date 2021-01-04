@@ -32,10 +32,11 @@
             </ul>
         </div>
      </nav>
-            <h1 class="text-center "> Profile</h1>
-            <div class="text-center">
-                <button type="button" class="btn btn-primary" v-on:click="Deconnection()">Deconnection</button>
-            </div>
+        <h1 class="text-center "> Profile</h1>
+
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" v-on:click="Deconnection()">Deconnection</button>
+        </div>
             
 </div>
   

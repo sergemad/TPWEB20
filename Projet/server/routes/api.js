@@ -109,6 +109,7 @@ router.post('/addfilm', async (req, res) => {
   const category= req.body.category
   const desc=''
   const last=''
+
   const result = await client.query({
     text: 'SELECT * FROM film WHERE filmname=$1 AND director=$2 AND year=$3',
     values: [title, director, year]
@@ -130,14 +131,49 @@ router.post('/addfilm', async (req, res) => {
   req.session.newfilm = img
   res.json({
     filmid: id,
-    filmname=title,
+    filmname:title,
     description: desc,
     year: year,
     category: category,
     last: last,
     director: director,
-    image=img,
+    image:img,
   })
 
+})
+
+router.post('/findfilm', async (req, res) =>{
+  const category= req.body.category
+
+  const result = await client.query({
+    text: 'SELECT * FROM film WHERE category=$1',
+    values: [category]
+  })
+
+  if (result.rows.length < 1) {
+    res.status(404).json({
+      message: 'film not exists'
+    })
+    return
+  }
+  req.session.findfilm=result.rows
+  res.json(result.rows)
+
+})
+
+router.post('/contact', async (req, res) =>{
+  const message= req.body.message
+  const objet= req.body.objet
+  const email= req.body.email
+
+  await client.query({
+    text: `INSERT INTO messages(email,objet,texte)
+    VALUES ($1, $2, $3)
+    `,
+    values: [email,objet,message]
+  })
+  req.session.contact="Message bien reçu"
+  res.json("Message reçu")
+  
 })
 module.exports = router

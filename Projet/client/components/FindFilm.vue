@@ -37,8 +37,38 @@
               
             </ul>
         </div>
-     </nav>
-            <h1 class="text-center "> Trouve ton film</h1>
+    </nav>
+  
+    <div class="container">
+      <h1 class="text-center "> Trouve ton film</h1><br>
+      <p class="text-center ">Rechercher un film en fonction de vos envie du moment.</p>
+      <div class="form-group">
+        <label for="sel1">Sélectioner un critère de film:</label>
+        <select class="form-control" id="sel1" v-model='category'>
+          <option v>Qui fait peur</option>
+          <option>Qui fait rire</option>
+          <option>Qui émeut</option>
+          <option>Qui surprend</option>
+          <option>Qui inspire</option>
+          <option>Qui fait réfléchir</option>
+        </select>
+      </div>
+    </div>
+    <br>
+
+      <div class="container d-flex justify-content-center">
+        {{Findfilm()}}
+        <div class="card text-center" style="width:200px" v-for="film in filmfound" :key="film.image">
+          <img class="card-img-top" v-bind:src="film.image" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title text-dark">{{film.filmname}}</h4>
+            <p class="card-text"></p>
+            
+          </div>
+        </div>
+      </div>
+
+
 </div>
   
 </template>
@@ -54,18 +84,38 @@ module.exports = {
       type : Object,
       required: true,
     },
+    filmfound: {
+      type: Array,
+      required: true,
+    }
   },
   data () {
     return {
-     
+     category:'Qui fait peur',
+     lastcategory:'',
     }
   },
   methods: {
-    
+    test(){
+      console.log(this.category)
+    },
+    Findfilm(){
+      if(this.lastcategory!=this.category){
+        this.lastcategory=this.category
+        this.$emit('findfilm', {
+          category: this.category,
+        })
+      }
+      
+    }
   }
 }
 </script>
 
 <style scoped>
  
+ .card img{
+    width: 100%;
+    height: 40%;
+  }
 </style>

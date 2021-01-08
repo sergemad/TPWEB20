@@ -34,8 +34,7 @@
      </nav>
   
 <div class="container">
-  <h1 class="text-center "> Connection</h1>
-  <p>Si vous n'avez pas de compte, inscrivez vous <router-link class="" to='/Register'> ici. </router-link>  </p>
+  <h1 class="text-center "> Inscription</h1>
   <form @submit.prevent="register()" class="needs-validation" novalidate>
     <div class="form-group">
       <label for="uname">Username:</label>

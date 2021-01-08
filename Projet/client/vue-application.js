@@ -31,6 +31,7 @@ var app = new Vue({
     },
     isConnected: false,
     film: [],
+    filmfound: [],
   },
   async mounted () {
     const res = await axios.get('/api/home')
@@ -63,8 +64,31 @@ var app = new Vue({
       this.$router.push('/')
     },
     async addfilm(newfilm){
-      console.log(newfilm)
+      newfilm.id=this.film.length +1
+      const res = await axios.post('/api/addfilm', newfilm)
+      Newfilm=res.data
+      this.film.push(Newfilm)
+      temp=this.film[newfilm.id-8]
+      this.film[newfilm.id-8]=Newfilm
+      this.film[newfilm.id-1]=temp
+      console.log(Newfilm)
+      console.log(this.film)
+      this.$router.push('/')
+    },
+    async findfilm(category){
+      console.log(category)
+      const res = await axios.post('/api/findfilm', category)
+      console.log(res.data)
+      this.filmfound=res.data
+      console.log(this.filmfound)
+    },
+    async envoyer(mess){
+      console.log(mess)
+      const res = await axios.post('/api/contact', mess)
+      console.log(res.data)
+      //this.$router.push('/Contact')
     }
+
   }
 })
 

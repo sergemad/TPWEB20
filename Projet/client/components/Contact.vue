@@ -38,7 +38,29 @@
             </ul>
         </div>
      </nav>
-            <h1 class="text-center "> Contacter nous</h1>
+      <h1 class="text-center "> Contactez nous</h1>
+      <div class="container">
+        <h2>Formulaire de contact</h2>
+        <p>Pour nous contacter par e-mail, remplissez soigneusement le formulaire ci-dessous. Votre message nous sera envoyé afin de pouvoir être traité par nos services.</p>
+        <form >
+          <div class="form-group">
+            <div class="form-group">
+              <label for="message">Objet du message* :</label>
+              <input type="text" class="form-control" placeholder="Votre objet" name="objet" v-model="objet">
+            </div>
+            <div class="form-group">
+              <label for="message">Email* :</label>
+              <input type="text" class="form-control" id="email" placeholder="nom@mail.com" name="email" v-model="email">
+            </div>
+            <div class="form-group">
+              <label for="message">Message* :</label>
+              <textarea class="form-control" id="message" rows="3" placeholder="Votre message" v-model="message"></textarea>
+            </div>
+          </div>
+          <button type="valider" class="btn btn-primary" v-on:click="Envoyer()">Valider mes informations</button>
+        </form>
+        <p font-size="x-small">* Champs obligatoires.</p> 
+      </div>   
 </div>
   
 </template>
@@ -57,11 +79,19 @@ module.exports = {
   },
   data () {
     return {
-     
+     objet: '',
+     message: '',
+     email: ''
     }
   },
   methods: {
-    
+    Envoyer(){
+      this.$emit('envoyer', {
+          email: this.email,
+          objet: this.objet,
+          message: this.message,
+        })
+    }
   }
 }
 </script>

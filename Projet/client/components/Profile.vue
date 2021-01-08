@@ -12,7 +12,7 @@
               <li class="nav-item  p-2">
                 <router-link class="nav-link " to='/'>Accueil</router-link>                 
               </li>
-              <li class="nav-item active p-2">
+              <li class="nav-item p-2">
                 <router-link class="nav-link " to='/FindFilm'> Trouver un film </router-link>            
               </li>
               <li class="nav-item p-2">
@@ -27,16 +27,23 @@
             </ul>
             <ul class="navbar-nav navbar-right " v-else>
               <li class="nav-item p-2">
-                <router-link class="nav-link nav-right" to='/Profile'>{{user.username}}</router-link> 
+                <router-link class="nav-link nav-right active" to='/Profile'>{{user.username}}</router-link> 
               </li>
             </ul>
         </div>
      </nav>
         <h1 class="text-center "> Profile</h1>
-
-        <div class="text-center">
-          <button type="button" class="btn btn-primary" v-on:click="Deconnection()">Deconnection</button>
+        <div class="container d-flex justify-content-center">
+        <div class="card text-center" style="width:400px">
+          <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">{{user.username}}</h4>
+            <p class="card-text"></p>
+            <button type="button" class="btn btn-primary" v-on:click="Deconnection()">Deconnection</button>
+          </div>
         </div>
+        </div>
+        
             
 </div>
   
